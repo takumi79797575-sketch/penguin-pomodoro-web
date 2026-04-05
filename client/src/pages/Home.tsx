@@ -136,7 +136,7 @@ export default function Home() {
             className="text-sm mt-1"
             style={{
               color: "oklch(0.65 0.06 240)",
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Nunito', sans-serif",
               fontSize: '23px',
               marginTop: '17px',
               width: '308px'
