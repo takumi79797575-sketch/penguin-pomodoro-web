@@ -44,10 +44,10 @@ function getPenguinMessage(
 ): string {
   if (status === "finished" && mode === "study") return "お疲れさま！休憩しよう！";
   if (status === "finished" && mode === "break") return "さあ、また頑張ろう！";
-  if (status === "paused") return "少し休んでる？";
-  if (status === "running" && mode === "study") return "集中して勉強中...";
+  if (status === "paused") return "ちょっと休憩";
+  if (status === "running" && mode === "study") return "がんばり中";
   if (status === "running" && mode === "break") return "ゆっくり休んでね...";
-  if (mode === "study") return "勉強を始めよう！";
+  if (mode === "study") return "がんばろう！";
   return "休憩タイム！";
 }
 
@@ -105,7 +105,7 @@ export default function Home() {
     <div
       className="min-h-screen w-full relative overflow-hidden flex flex-col items-center justify-center"
       style={{
-        background: "oklch(0.12 0.04 265)",
+        background: "transparent",
       }}
     >
       {/* Star background removed */}
@@ -140,30 +140,32 @@ export default function Home() {
 
 
 
-        {/* Timer card */}
+        {/* Timer card - どう森風 */}
         <div
           className="relative flex flex-col items-center justify-center rounded-3xl p-8"
           style={{
-            background: "oklch(0.14 0.05 260 / 80%)",
+            background: "linear-gradient(135deg, oklch(0.75 0.04 120), oklch(0.72 0.03 110))",
             backdropFilter: "blur(20px)",
-            border: "11px solid oklch(1 0 0 / 10%)",
-            boxShadow: cardGlow,
+            border: "3px solid oklch(0.60 0.05 120)",
+            boxShadow: "0 8px 32px oklch(0 0 0 / 30%), inset 0 1px 0 oklch(1 0 0 / 10%)",
             width: "340px",
             height: "343px",
           }}
         >
-          {/* SVG progress ring */}
+          {/* SVG progress ring - どう森風カラー */}
           <TimerRing progress={progress} mode={mode} size={320} strokeWidth={10} />
 
           {/* Inner content */}
           <div className="relative z-10 flex flex-col items-center gap-2">
-            {/* Penguin image */}
+            {/* Penguin image - どう森風シャドウ */}
             <div
               key={penguinAnimKey}
-              className="w-28 h-28 rounded-full overflow-hidden"
+              className="w-28 h-28 rounded-full overflow-hidden border-2"
               style={{
                 animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
                 filter: "drop-shadow(0 4px 12px oklch(0 0 0 / 40%))",
+                borderColor: "oklch(0.60 0.05 120)",
+                boxShadow: "inset 0 1px 0 oklch(1 0 0 / 20%)",
               }}
             >
               <img
@@ -173,19 +175,13 @@ export default function Home() {
               />
             </div>
 
-            {/* Time display */}
+            {/* Time display - どう森風カラー */}
             <div
               className="text-5xl font-black tabular-nums leading-none"
               style={{
                 fontFamily: "'Nunito', sans-serif",
-                color:
-                  mode === "study"
-                    ? "oklch(0.92 0.10 85)"
-                    : "oklch(0.88 0.10 195)",
-                textShadow:
-                  mode === "study"
-                    ? "0 0 20px oklch(0.82 0.14 85 / 60%)"
-                    : "0 0 20px oklch(0.72 0.14 195 / 60%)",
+                color: "oklch(0.45 0.08 120)",
+                textShadow: "0 2px 4px oklch(0 0 0 / 20%)",
                 fontSize: "55px",
                 height: "52px",
               }}
@@ -193,11 +189,11 @@ export default function Home() {
               {formatTime(timeLeft)}
             </div>
 
-            {/* Message */}
+            {/* Message - どう森風テキスト */}
             <p
               className="text-xs text-center"
               style={{
-                color: "oklch(0.70 0.06 240)",
+                color: "oklch(0.55 0.05 120)",
                 fontFamily: "'DM Sans', sans-serif",
                 paddingTop: "7px",
                 marginRight: "1px",
