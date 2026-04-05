@@ -146,10 +146,10 @@ export default function Home() {
           style={{
             background: "oklch(0.14 0.05 260 / 80%)",
             backdropFilter: "blur(20px)",
-            border: "1px solid oklch(1 0 0 / 10%)",
+            border: "11px solid oklch(1 0 0 / 10%)",
             boxShadow: cardGlow,
             width: "340px",
-            height: "340px",
+            height: "343px",
           }}
         >
           {/* SVG progress ring */}
@@ -186,6 +186,8 @@ export default function Home() {
                   mode === "study"
                     ? "0 0 20px oklch(0.82 0.14 85 / 60%)"
                     : "0 0 20px oklch(0.72 0.14 195 / 60%)",
+                fontSize: "55px",
+                height: "52px",
               }}
             >
               {formatTime(timeLeft)}
@@ -197,6 +199,11 @@ export default function Home() {
               style={{
                 color: "oklch(0.70 0.06 240)",
                 fontFamily: "'DM Sans', sans-serif",
+                paddingTop: "7px",
+                marginRight: "1px",
+                marginBottom: "-1px",
+                width: "90px",
+                height: "17px",
               }}
             >
               {message}
