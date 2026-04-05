@@ -105,7 +105,7 @@ export default function Home() {
     <div
       className="min-h-screen w-full relative overflow-hidden flex flex-col items-center justify-center"
       style={{
-        background: "transparent",
+        background: "oklch(0.12 0.04 265)",
       }}
     >
       {/* Star background removed */}
@@ -211,8 +211,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Control buttons - positioned at top-left, very small */}
-        <div className="fixed top-2 left-2 flex items-center gap-1 z-50">
+        {/* Control buttons - positioned at top-left */}
+        <div className="fixed top-2 left-2 flex flex-col items-center gap-2 z-50">
           {/* Main action button - Penguin photo as button */}
           {status === "idle" && (
             <button
@@ -284,6 +284,40 @@ export default function Home() {
               />
             </button>
           )}
+          
+          {/* Reset and Skip buttons below penguin button */}
+          <div className="flex gap-2">
+            <button
+              onClick={reset}
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
+              style={{
+                background: "oklch(0.20 0.05 260 / 80%)",
+                border: "1px solid oklch(1 0 0 / 20%)",
+                color: "oklch(0.70 0.06 240)",
+              }}
+              title="リセット"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
+              </svg>
+            </button>
+            <button
+              onClick={skip}
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
+              style={{
+                background: "oklch(0.20 0.05 260 / 80%)",
+                border: "1px solid oklch(1 0 0 / 20%)",
+                color: "oklch(0.70 0.06 240)",
+              }}
+              title="スキップ"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="5 4 15 12 5 20 5 4" />
+                <line x1="19" y1="5" x2="19" y2="19" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Cycle counter - Mini penguins */}
@@ -298,15 +332,14 @@ export default function Home() {
           <span style={{ color: "oklch(0.60 0.06 240)", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
             完了
           </span>
-          <div className="flex gap-1">
-            {Array.from({ length: Math.max(cycles, 4) }).map((_, i) => (
+          <div className="flex gap-1 flex-wrap justify-center max-w-xs">
+            {Array.from({ length: cycles }).map((_, i) => (
               <div
                 key={i}
                 className="w-8 h-8 rounded-full overflow-hidden transition-all duration-300 flex-shrink-0"
                 style={{
-                  opacity: i < cycles ? 1 : 0.3,
-                  border: i < cycles ? "1.5px solid oklch(0.82 0.14 85)" : "1px solid oklch(1 0 0 / 20%)",
-                  boxShadow: i < cycles ? "0 0 8px oklch(0.82 0.14 85 / 50%)" : "none",
+                  border: "1.5px solid oklch(0.82 0.14 85)",
+                  boxShadow: "0 0 8px oklch(0.82 0.14 85 / 50%)",
                 }}
               >
                 <img
