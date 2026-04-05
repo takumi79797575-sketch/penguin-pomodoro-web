@@ -140,14 +140,14 @@ export default function Home() {
 
 
 
-        {/* Timer card - どう森風 */}
+        {/* Timer card - パステルカラー */}
         <div
           className="relative flex flex-col items-center justify-center rounded-3xl p-8"
           style={{
-            background: "linear-gradient(135deg, oklch(0.75 0.04 120), oklch(0.72 0.03 110))",
+            background: "oklch(0.88 0.02 120)",
             backdropFilter: "blur(20px)",
-            border: "3px solid oklch(0.60 0.05 120)",
-            boxShadow: "0 8px 32px oklch(0 0 0 / 30%), inset 0 1px 0 oklch(1 0 0 / 10%)",
+            border: "2px solid oklch(0.80 0.03 120)",
+            boxShadow: "0 4px 16px oklch(0 0 0 / 15%)",
             width: "340px",
             height: "343px",
           }}
@@ -157,15 +157,15 @@ export default function Home() {
 
           {/* Inner content */}
           <div className="relative z-10 flex flex-col items-center gap-2">
-            {/* Penguin image - どう森風シャドウ */}
+            {/* Penguin image - パステルシャドウ */}
             <div
               key={penguinAnimKey}
               className="w-28 h-28 rounded-full overflow-hidden border-2"
               style={{
                 animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
-                filter: "drop-shadow(0 4px 12px oklch(0 0 0 / 40%))",
-                borderColor: "oklch(0.60 0.05 120)",
-                boxShadow: "inset 0 1px 0 oklch(1 0 0 / 20%)",
+                filter: "drop-shadow(0 2px 8px oklch(0 0 0 / 15%))",
+                borderColor: "oklch(0.80 0.03 120)",
+                boxShadow: "inset 0 1px 0 oklch(1 0 0 / 10%)",
               }}
             >
               <img
@@ -175,13 +175,13 @@ export default function Home() {
               />
             </div>
 
-            {/* Time display - どう森風カラー */}
+            {/* Time display - パステルテキスト */}
             <div
               className="text-5xl font-black tabular-nums leading-none"
               style={{
                 fontFamily: "'Nunito', sans-serif",
-                color: "oklch(0.45 0.08 120)",
-                textShadow: "0 2px 4px oklch(0 0 0 / 20%)",
+                color: "oklch(0.65 0.05 120)",
+                textShadow: "none",
                 fontSize: "55px",
                 height: "52px",
               }}
@@ -189,11 +189,11 @@ export default function Home() {
               {formatTime(timeLeft)}
             </div>
 
-            {/* Message - どう森風テキスト */}
+            {/* Message - パステルテキスト */}
             <p
               className="text-xs text-center"
               style={{
-                color: "oklch(0.55 0.05 120)",
+                color: "oklch(0.70 0.04 120)",
                 fontFamily: "'DM Sans', sans-serif",
                 paddingTop: "7px",
                 marginRight: "1px",
