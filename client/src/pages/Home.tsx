@@ -16,6 +16,8 @@ import Confetti from "@/components/Confetti";
 const PENGUIN_PHOTO =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663517184603/gBdCmjwNjFd9R7ECp95Vsr/penguin-photo-rounded_24a31865.webp";
 
+// Export for use in button
+
 // Use the same photo for all states (study, sleep, celebrate)
 const PENGUIN_STUDY = PENGUIN_PHOTO;
 const PENGUIN_SLEEP = PENGUIN_PHOTO;
@@ -48,6 +50,9 @@ function getPenguinMessage(
   if (mode === "study") return "勉強を始めよう！";
   return "休憩タイム！";
 }
+
+// Penguin photo URL for button and cycle counter
+const PENGUIN_BUTTON_PHOTO = PENGUIN_PHOTO;
 
 export default function Home() {
   const {
@@ -201,119 +206,82 @@ export default function Home() {
 
         {/* Control buttons - positioned at top-left, very small */}
         <div className="fixed top-2 left-2 flex items-center gap-1 z-50">
-          {/* Reset */}
-          <button
-            onClick={reset}
-            className="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
-            style={{
-              background: "oklch(0.18 0.05 260 / 60%)",
-              border: "1px solid oklch(1 0 0 / 10%)",
-              color: "oklch(0.65 0.06 240)",
-            }}
-            title="リセット"
-          >
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-              <path d="M3 3v5h5" />
-            </svg>
-          </button>
-
-          {/* Main action button */}
+          {/* Main action button - Penguin photo as button */}
           {status === "idle" && (
             <button
               onClick={start}
-              className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-black transition-all duration-200 hover:scale-110 active:scale-95"
+              className="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 overflow-hidden border-2"
               style={{
-                background:
-                  mode === "study"
-                    ? "linear-gradient(135deg, oklch(0.85 0.16 75), oklch(0.75 0.16 50))"
-                    : "linear-gradient(135deg, oklch(0.75 0.16 195), oklch(0.65 0.16 220))",
-                boxShadow:
-                  mode === "study"
-                    ? "0 4px 24px oklch(0.82 0.14 85 / 50%)"
-                    : "0 4px 24px oklch(0.72 0.14 195 / 50%)",
-                color: "oklch(0.12 0.04 265)",
-                fontFamily: "'Nunito', sans-serif",
+                borderColor: mode === "study" ? "oklch(0.82 0.14 85)" : "oklch(0.72 0.14 195)",
+                boxShadow: mode === "study"
+                  ? "0 0 16px oklch(0.82 0.14 85 / 40%)"
+                  : "0 0 16px oklch(0.72 0.14 195 / 40%)",
               }}
             >
-              ▶
+              <img
+                src={PENGUIN_PHOTO}
+                alt="penguin-start"
+                className="w-full h-full object-cover"
+              />
             </button>
           )}
           {status === "running" && (
             <button
               onClick={pause}
-              className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-black transition-all duration-200 hover:scale-110 active:scale-95"
+              className="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 overflow-hidden border-2"
               style={{
-                background:
-                  mode === "study"
-                    ? "linear-gradient(135deg, oklch(0.85 0.16 75), oklch(0.75 0.16 50))"
-                    : "linear-gradient(135deg, oklch(0.75 0.16 195), oklch(0.65 0.16 220))",
-                boxShadow:
-                  mode === "study"
-                    ? "0 4px 24px oklch(0.82 0.14 85 / 50%)"
-                    : "0 4px 24px oklch(0.72 0.14 195 / 50%)",
-                color: "oklch(0.12 0.04 265)",
+                borderColor: mode === "study" ? "oklch(0.82 0.14 85)" : "oklch(0.72 0.14 195)",
+                boxShadow: mode === "study"
+                  ? "0 0 16px oklch(0.82 0.14 85 / 40%)"
+                  : "0 0 16px oklch(0.72 0.14 195 / 40%)",
               }}
             >
-              ⏸
+              <img
+                src={PENGUIN_PHOTO}
+                alt="penguin-pause"
+                className="w-full h-full object-cover"
+              />
             </button>
           )}
           {status === "paused" && (
             <button
               onClick={resume}
-              className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-black transition-all duration-200 hover:scale-110 active:scale-95"
+              className="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 overflow-hidden border-2"
               style={{
-                background:
-                  mode === "study"
-                    ? "linear-gradient(135deg, oklch(0.85 0.16 75), oklch(0.75 0.16 50))"
-                    : "linear-gradient(135deg, oklch(0.75 0.16 195), oklch(0.65 0.16 220))",
-                boxShadow:
-                  mode === "study"
-                    ? "0 4px 24px oklch(0.82 0.14 85 / 50%)"
-                    : "0 4px 24px oklch(0.72 0.14 195 / 50%)",
-                color: "oklch(0.12 0.04 265)",
+                borderColor: mode === "study" ? "oklch(0.82 0.14 85)" : "oklch(0.72 0.14 195)",
+                boxShadow: mode === "study"
+                  ? "0 0 16px oklch(0.82 0.14 85 / 40%)"
+                  : "0 0 16px oklch(0.72 0.14 195 / 40%)",
               }}
             >
-              ▶
+              <img
+                src={PENGUIN_PHOTO}
+                alt="penguin-resume"
+                className="w-full h-full object-cover"
+              />
             </button>
           )}
           {status === "finished" && (
             <button
               onClick={skip}
-              className="w-20 h-20 rounded-full flex items-center justify-center text-lg font-black transition-all duration-200 hover:scale-110 active:scale-95 animate-pulse-glow"
+              className="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 overflow-hidden border-2 animate-pulse-glow"
               style={{
-                background: "linear-gradient(135deg, oklch(0.78 0.18 310), oklch(0.68 0.18 290))",
-                boxShadow: "0 4px 24px oklch(0.75 0.18 310 / 50%)",
-                color: "oklch(0.98 0 0)",
-                fontFamily: "'Nunito', sans-serif",
-                fontSize: "12px",
+                borderColor: "oklch(0.78 0.18 310)",
+                boxShadow: "0 0 16px oklch(0.78 0.18 310 / 60%)",
               }}
             >
-              次へ
+              <img
+                src={PENGUIN_PHOTO}
+                alt="penguin-finished"
+                className="w-full h-full object-cover"
+              />
             </button>
           )}
-
-          {/* Skip */}
-          <button
-            onClick={skip}
-            className="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
-            style={{
-              background: "oklch(0.18 0.05 260 / 60%)",
-              border: "1px solid oklch(1 0 0 / 10%)",
-              color: "oklch(0.65 0.06 240)",
-            }}
-            title="スキップ"
-          >
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="5 4 15 12 5 20 5 4" />
-              <line x1="19" y1="5" x2="19" y2="19" />
-            </svg>
-          </button>
         </div>
 
-        {/* Cycle counter */}
+        {/* Cycle counter - Mini penguins */}
         <div
-          className="flex items-center gap-3 px-5 py-3 rounded-2xl"
+          className="flex items-center gap-2 px-4 py-3 rounded-2xl"
           style={{
             background: "oklch(0.14 0.05 260 / 60%)",
             border: "1px solid oklch(1 0 0 / 8%)",
@@ -321,28 +289,29 @@ export default function Home() {
           }}
         >
           <span style={{ color: "oklch(0.60 0.06 240)", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
-            完了サイクル
+            完了
           </span>
-          <div className="flex gap-1.5">
+          <div className="flex gap-1">
             {Array.from({ length: Math.max(cycles, 4) }).map((_, i) => (
               <div
                 key={i}
-                className="w-3 h-3 rounded-full transition-all duration-300"
+                className="w-8 h-8 rounded-full overflow-hidden transition-all duration-300 flex-shrink-0"
                 style={{
-                  background:
-                    i < cycles
-                      ? "linear-gradient(135deg, oklch(0.82 0.14 85), oklch(0.72 0.14 195))"
-                      : "oklch(1 0 0 / 15%)",
-                  boxShadow:
-                    i < cycles
-                      ? "0 0 6px oklch(0.82 0.14 85 / 60%)"
-                      : "none",
+                  opacity: i < cycles ? 1 : 0.3,
+                  border: i < cycles ? "1.5px solid oklch(0.82 0.14 85)" : "1px solid oklch(1 0 0 / 20%)",
+                  boxShadow: i < cycles ? "0 0 8px oklch(0.82 0.14 85 / 50%)" : "none",
                 }}
-              />
+              >
+                <img
+                  src={PENGUIN_PHOTO}
+                  alt={`penguin-${i}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             ))}
           </div>
           <span
-            className="font-bold text-sm"
+            className="font-bold text-sm ml-1"
             style={{
               color: "oklch(0.82 0.12 85)",
               fontFamily: "'Nunito', sans-serif",
