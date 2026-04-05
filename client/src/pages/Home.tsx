@@ -126,13 +126,21 @@ export default function Home() {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
+              fontSize: '26px',
+              width: '298px'
             }}
           >
             🐧 Penguin Pomodoro
           </h1>
           <p
             className="text-sm mt-1"
-            style={{ color: "oklch(0.65 0.06 240)", fontFamily: "'DM Sans', sans-serif" }}
+            style={{
+              color: "oklch(0.65 0.06 240)",
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '19px',
+              marginTop: '17px',
+              width: '308px'
+            }}
           >
             50分勉強 · 10分休憩
           </p>
@@ -182,8 +190,8 @@ export default function Home() {
                 fontFamily: "'Nunito', sans-serif",
                 color: "oklch(0.65 0.05 120)",
                 textShadow: "none",
-                fontSize: "55px",
-                height: "52px",
+                fontSize: '59px',
+                height: '52px'
               }}
             >
               {formatTime(timeLeft)}
@@ -195,11 +203,12 @@ export default function Home() {
               style={{
                 color: "oklch(0.70 0.04 120)",
                 fontFamily: "'DM Sans', sans-serif",
-                paddingTop: "7px",
-                marginRight: "1px",
-                marginBottom: "-1px",
-                width: "90px",
-                height: "17px",
+                paddingTop: '9px',
+                marginRight: '0px',
+                marginBottom: '0px',
+                width: '125px',
+                height: '39px',
+                fontSize: '18px'
               }}
             >
               {message}
