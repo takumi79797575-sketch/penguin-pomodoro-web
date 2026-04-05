@@ -137,7 +137,7 @@ export default function Home() {
             style={{
               color: "oklch(0.65 0.06 240)",
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: '19px',
+              fontSize: '23px',
               marginTop: '17px',
               width: '308px'
             }}
@@ -190,8 +190,9 @@ export default function Home() {
                 fontFamily: "'Nunito', sans-serif",
                 color: "oklch(0.65 0.05 120)",
                 textShadow: "none",
-                fontSize: '59px',
-                height: '52px'
+                fontSize: '61px',
+                height: '52px',
+                marginTop: '15px'
               }}
             >
               {formatTime(timeLeft)}
@@ -206,9 +207,10 @@ export default function Home() {
                 paddingTop: '9px',
                 marginRight: '0px',
                 marginBottom: '0px',
-                width: '125px',
+                width: '128px',
                 height: '39px',
-                fontSize: '18px'
+                fontSize: '21px',
+                marginTop: '4px'
               }}
             >
               {message}
