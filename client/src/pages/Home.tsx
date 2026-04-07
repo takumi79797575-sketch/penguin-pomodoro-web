@@ -71,11 +71,38 @@ export default function Home() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [penguinAnimKey, setPenguinAnimKey] = useState(0);
 
-  // Show confetti when finished
+  // Show confetti when finished and play cute sound
   useEffect(() => {
     if (status === "finished") {
       setShowConfetti(true);
       setPenguinAnimKey((k) => k + 1);
+      
+      // Play cute completion sound
+      try {
+        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const now = audioContext.currentTime;
+        
+        // Create a cute "ding" sound
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        
+        // Cute high-pitched ding
+        osc.frequency.setValueAtTime(800, now);
+        osc.frequency.exponentialRampToValueAtTime(600, now + 0.3);
+        
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+        
+        osc.start(now);
+        osc.stop(now + 0.3);
+      } catch (e) {
+        // Fallback if audio context fails
+        console.log('Audio playback not available');
+      }
+      
       const t = setTimeout(() => setShowConfetti(false), 4000);
       return () => clearTimeout(t);
     }
@@ -126,8 +153,8 @@ export default function Home() {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              fontSize: '26px',
-              width: '298px'
+              fontSize: '22px',
+              width: '298px', fontSize: '22px', paddingRight: '6px', paddingRight: '9px'
             }}
           >
             🐧 Penguin Pomodoro
@@ -137,9 +164,9 @@ export default function Home() {
             style={{
               color: "oklch(0.65 0.06 240)",
               fontFamily: "'Nunito', sans-serif",
-              fontSize: '23px',
-              marginTop: '17px',
-              width: '308px'
+              fontSize: '28px',
+              marginTop: '1px',
+              width: '308px', fontSize: '28px', marginTop: '1px'
             }}
           >
             50分勉強 · 10分休憩
@@ -148,7 +175,7 @@ export default function Home() {
 
 
 
-        {/* Timer card - パステルカラー */}
+        {/* Timer card - ペンギンと植物デザイン */}
         <div
           className="relative flex flex-col items-center justify-center rounded-3xl p-8"
           style={{
@@ -158,9 +185,69 @@ export default function Home() {
             boxShadow: "0 4px 16px oklch(0 0 0 / 15%)",
             width: "340px",
             height: "343px",
+            position: "relative",
+            overflow: "visible"
           }}
         >
-          {/* SVG progress ring - どう森風カラー */}
+          {/* Left penguin decoration */}
+          <div
+            style={{
+              position: "absolute",
+              left: "-50px",
+              bottom: "20px",
+              fontSize: "70px",
+              opacity: 0.7,
+              zIndex: 5,
+              filter: "drop-shadow(0 2px 4px oklch(0 0 0 / 20%))"
+            }}
+          >
+            🐧
+          </div>
+          
+          {/* Right penguin decoration */}
+          <div
+            style={{
+              position: "absolute",
+              right: "-50px",
+              top: "10px",
+              fontSize: "70px",
+              opacity: 0.7,
+              zIndex: 5,
+              filter: "drop-shadow(0 2px 4px oklch(0 0 0 / 20%))"
+            }}
+          >
+            🐧
+          </div>
+          
+          {/* Left plant decoration */}
+          <div
+            style={{
+              position: "absolute",
+              left: "-15px",
+              top: "40px",
+              fontSize: "35px",
+              opacity: 0.5,
+              zIndex: 4
+            }}
+          >
+            🌿
+          </div>
+          
+          {/* Right plant decoration */}
+          <div
+            style={{
+              position: "absolute",
+              right: "-15px",
+              bottom: "50px",
+              fontSize: "35px",
+              opacity: 0.5,
+              zIndex: 4
+            }}
+          >
+            🌿
+          </div>
+          
+          {/* SVG progress ring */}
           <TimerRing progress={progress} mode={mode} size={320} strokeWidth={10} />
 
           {/* Inner content */}
