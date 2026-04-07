@@ -71,11 +71,38 @@ export default function Home() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [penguinAnimKey, setPenguinAnimKey] = useState(0);
 
-  // Show confetti when finished
+  // Show confetti when finished and play cute sound
   useEffect(() => {
     if (status === "finished") {
       setShowConfetti(true);
       setPenguinAnimKey((k) => k + 1);
+      
+      // Play cute completion sound
+      try {
+        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const now = audioContext.currentTime;
+        
+        // Create a cute "ding" sound
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        
+        // Cute high-pitched ding
+        osc.frequency.setValueAtTime(800, now);
+        osc.frequency.exponentialRampToValueAtTime(600, now + 0.3);
+        
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+        
+        osc.start(now);
+        osc.stop(now + 0.3);
+      } catch (e) {
+        // Fallback if audio context fails
+        console.log('Audio playback not available');
+      }
+      
       const t = setTimeout(() => setShowConfetti(false), 4000);
       return () => clearTimeout(t);
     }
