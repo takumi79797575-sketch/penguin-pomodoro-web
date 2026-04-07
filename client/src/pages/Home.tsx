@@ -162,10 +162,10 @@ export default function Home() {
           <p
             className="text-sm mt-1"
             style={{
-              color: "oklch(0.65 0.06 240)",
+              color: '#6b7cff',
               fontFamily: "'Nunito', sans-serif",
-              fontSize: '23px',
-              marginTop: '17px',
+              fontSize: '30px',
+              marginTop: '18px',
               width: '308px'
             }}
           >
@@ -219,7 +219,7 @@ export default function Home() {
                 textShadow: "none",
                 fontSize: '61px',
                 height: '52px',
-                marginTop: '15px'
+                marginTop: '-10px'
               }}
             >
               {formatTime(timeLeft)}
@@ -234,10 +234,10 @@ export default function Home() {
                 paddingTop: '9px',
                 marginRight: '0px',
                 marginBottom: '0px',
-                width: '128px',
+                width: '192px',
                 height: '39px',
                 fontSize: '21px',
-                marginTop: '4px'
+                marginTop: '-6px'
               }}
             >
               {message}
