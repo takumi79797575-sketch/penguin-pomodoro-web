@@ -334,6 +334,7 @@ export default function Home() {
             background: "oklch(0.14 0.05 260 / 60%)",
             border: "1px solid oklch(1 0 0 / 8%)",
             backdropFilter: "blur(10px)",
+            width: '162px'
           }}
         >
           <span style={{ color: "oklch(0.60 0.06 240)", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
