@@ -175,69 +175,86 @@ export default function Home() {
 
 
 
-        {/* Timer card - パステルカラー */}
+        {/* Timer card - ペンギンと一緒に */}
         <div
-          className="relative flex flex-col items-center justify-center rounded-3xl p-8"
+          className="relative flex items-center justify-center rounded-3xl p-8"
           style={{
-            background: "oklch(0.88 0.02 120)",
+            background: "#f5f5f5",
             backdropFilter: "blur(20px)",
-            border: "2px solid oklch(0.80 0.03 120)",
-            boxShadow: "0 4px 16px oklch(0 0 0 / 15%)",
-            width: "340px",
-            height: "343px",
+            border: "8px solid #e8e8e8",
+            boxShadow: "0 8px 32px oklch(0 0 0 / 20%), inset 0 1px 0 oklch(1 0 0 / 30%)",
+            width: "420px",
+            height: "280px",
+            position: "relative",
           }}
         >
-          {/* SVG progress ring - どう森風カラー */}
-          <TimerRing progress={progress} mode={mode} size={320} strokeWidth={10} />
-
-          {/* Inner content */}
-          <div className="relative z-10 flex flex-col items-center gap-2">
-            {/* Penguin image - パステルシャドウ */}
-            <div
-              key={penguinAnimKey}
-              className="w-28 h-28 rounded-full overflow-hidden border-2"
-              style={{
-                animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
-                filter: "drop-shadow(0 2px 8px oklch(0 0 0 / 15%))",
-                borderColor: "oklch(0.80 0.03 120)",
-                boxShadow: "inset 0 1px 0 oklch(1 0 0 / 10%)",
-              }}
-            >
+          {/* Left penguin */}
+          <div
+            key={`left-${penguinAnimKey}`}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2"
+            style={{
+              animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
+              filter: "drop-shadow(0 4px 12px oklch(0 0 0 / 20%))",
+              marginLeft: "-50px",
+            }}
+          >
+            <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-white" style={{ boxShadow: "0 2px 8px oklch(0 0 0 / 15%)" }}>
               <img
                 src={penguinImg}
-                alt="penguin"
+                alt="penguin-left"
                 className="w-full h-full object-cover"
               />
             </div>
+          </div>
 
-            {/* Time display - パステルテキスト */}
+          {/* Right penguin */}
+          <div
+            key={`right-${penguinAnimKey}`}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2"
+            style={{
+              animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
+              filter: "drop-shadow(0 4px 12px oklch(0 0 0 / 20%))",
+              marginRight: "-50px",
+            }}
+          >
+            <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-white" style={{ boxShadow: "0 2px 8px oklch(0 0 0 / 15%)" }}>
+              <img
+                src={penguinImg}
+                alt="penguin-right"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Inner content */}
+          <div className="relative z-10 flex flex-col items-center gap-2">
+            {/* Time display - ゴールド */}
             <div
               className="text-5xl font-black tabular-nums leading-none"
               style={{
                 fontFamily: "'Nunito', sans-serif",
-                color: "oklch(0.65 0.05 120)",
-                textShadow: "none",
-                fontSize: '61px',
-                height: '52px',
-                marginTop: '-10px'
+                color: "#d4a574",
+                textShadow: "0 2px 4px oklch(0 0 0 / 10%)",
+                fontSize: '72px',
+                height: '80px',
               }}
             >
               {formatTime(timeLeft)}
             </div>
 
-            {/* Message - パステルテキスト */}
+            {/* Message - グレー */}
             <p
               className="text-xs text-center"
               style={{
-                color: "oklch(0.70 0.04 120)",
+                color: "#999999",
                 fontFamily: "'DM Sans', sans-serif",
-                paddingTop: '9px',
+                paddingTop: '4px',
                 marginRight: '0px',
                 marginBottom: '0px',
-                width: '192px',
-                height: '39px',
-                fontSize: '21px',
-                marginTop: '-6px'
+                width: '200px',
+                height: '40px',
+                fontSize: '18px',
+                marginTop: '0px',
               }}
             >
               {message}
