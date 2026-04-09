@@ -16,6 +16,10 @@ import Confetti from "@/components/Confetti";
 const PENGUIN_PHOTO =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663517184603/gBdCmjwNjFd9R7ECp95Vsr/penguin-photo-rounded_24a31865.webp";
 
+// Penguin illustrations extracted from reference image
+const PENGUIN_LEFT_ILLUSTRATION = "https://d2xsxph8kpxj0f.cloudfront.net/310519663517184603/JPdKuqEP9TUq8k6vRYAG7V/penguin-left-cWyHSMiTVJqEk4XJzQKVQS.webp";
+const PENGUIN_RIGHT_ILLUSTRATION = "https://d2xsxph8kpxj0f.cloudfront.net/310519663517184603/JPdKuqEP9TUq8k6vRYAG7V/penguin-right-hGGfJYUZbanZtmDwedbbmP.webp";
+
 // Export for use in button
 
 // Use the same photo for all states (study, sleep, celebrate)
@@ -195,16 +199,14 @@ export default function Home() {
             style={{
               animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
               filter: "drop-shadow(0 4px 12px oklch(0 0 0 / 20%))",
-              marginLeft: "-50px",
+              marginLeft: "-60px",
             }}
           >
-            <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-white" style={{ boxShadow: "0 2px 8px oklch(0 0 0 / 15%)" }}>
-              <img
-                src={penguinImg}
-                alt="penguin-left"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <img
+              src={PENGUIN_LEFT_ILLUSTRATION}
+              alt="penguin-left"
+              className="w-40 h-40 object-contain"
+            />
           </div>
 
           {/* Right penguin */}
@@ -214,16 +216,14 @@ export default function Home() {
             style={{
               animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
               filter: "drop-shadow(0 4px 12px oklch(0 0 0 / 20%))",
-              marginRight: "-50px",
+              marginRight: "-60px",
             }}
           >
-            <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-white" style={{ boxShadow: "0 2px 8px oklch(0 0 0 / 15%)" }}>
-              <img
-                src={penguinImg}
-                alt="penguin-right"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <img
+              src={PENGUIN_RIGHT_ILLUSTRATION}
+              alt="penguin-right"
+              className="w-40 h-40 object-contain"
+            />
           </div>
 
           {/* Inner content */}
