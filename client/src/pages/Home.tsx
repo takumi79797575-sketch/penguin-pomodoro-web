@@ -165,23 +165,7 @@ export default function Home() {
 
           {/* Inner content */}
           <div className="relative z-10 flex flex-col items-center gap-2">
-            {/* Penguin image - パステルシャドウ */}
-            <div
-              key={penguinAnimKey}
-              className="w-28 h-28 rounded-full overflow-hidden border-2"
-              style={{
-                animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
-                filter: "drop-shadow(0 2px 8px oklch(0 0 0 / 15%))",
-                borderColor: "oklch(0.80 0.03 120)",
-                boxShadow: "inset 0 1px 0 oklch(1 0 0 / 10%)",
-              }}
-            >
-              <img
-                src={penguinImg}
-                alt="penguin"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            {/* Penguin image removed */}
 
             {/* Time display - パステルテキスト */}
             <div
@@ -192,7 +176,7 @@ export default function Home() {
                 textShadow: "none",
                 fontSize: '64px',
                 height: '52px',
-                marginTop: '7px'
+                marginTop: '20px'
               }}
             >
               {formatTime(timeLeft)}
