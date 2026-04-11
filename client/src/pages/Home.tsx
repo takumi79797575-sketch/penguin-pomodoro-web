@@ -174,9 +174,9 @@ export default function Home() {
                 fontFamily: "'Nunito', sans-serif",
                 color: '#255f31',
                 textShadow: "none",
-                fontSize: '64px',
+                fontSize: '78px',
                 height: '52px',
-                marginTop: '20px'
+                marginTop: '-12px'
               }}
             >
               {formatTime(timeLeft)}
@@ -188,12 +188,12 @@ export default function Home() {
               style={{
                 color: "oklch(0.70 0.04 120)",
                 fontFamily: "'DM Sans', sans-serif",
-                paddingTop: '9px',
+                paddingTop: '44px',
                 marginRight: '0px',
                 marginBottom: '0px',
-                width: '150px',
+                width: '173px',
                 height: '39px',
-                fontSize: '21px',
+                fontSize: '24px',
                 marginTop: '4px'
               }}
             >
