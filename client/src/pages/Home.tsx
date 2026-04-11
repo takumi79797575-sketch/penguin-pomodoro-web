@@ -188,11 +188,11 @@ export default function Home() {
               className="text-5xl font-black tabular-nums leading-none"
               style={{
                 fontFamily: "'Nunito', sans-serif",
-                color: "oklch(0.65 0.05 120)",
+                color: '#255f31',
                 textShadow: "none",
-                fontSize: '61px',
+                fontSize: '64px',
                 height: '52px',
-                marginTop: '15px'
+                marginTop: '7px'
               }}
             >
               {formatTime(timeLeft)}
@@ -207,7 +207,7 @@ export default function Home() {
                 paddingTop: '9px',
                 marginRight: '0px',
                 marginBottom: '0px',
-                width: '128px',
+                width: '150px',
                 height: '39px',
                 fontSize: '21px',
                 marginTop: '4px'
