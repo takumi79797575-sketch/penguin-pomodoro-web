@@ -16,10 +16,6 @@ import Confetti from "@/components/Confetti";
 const PENGUIN_PHOTO =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663517184603/gBdCmjwNjFd9R7ECp95Vsr/penguin-photo-rounded_24a31865.webp";
 
-// Penguin illustrations extracted from reference image
-const PENGUIN_LEFT_ILLUSTRATION = "https://d2xsxph8kpxj0f.cloudfront.net/310519663517184603/JPdKuqEP9TUq8k6vRYAG7V/penguin-left-cWyHSMiTVJqEk4XJzQKVQS.webp";
-const PENGUIN_RIGHT_ILLUSTRATION = "https://d2xsxph8kpxj0f.cloudfront.net/310519663517184603/JPdKuqEP9TUq8k6vRYAG7V/penguin-right-hGGfJYUZbanZtmDwedbbmP.webp";
-
 // Export for use in button
 
 // Use the same photo for all states (study, sleep, celebrate)
@@ -75,38 +71,11 @@ export default function Home() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [penguinAnimKey, setPenguinAnimKey] = useState(0);
 
-  // Show confetti when finished and play cute sound
+  // Show confetti when finished
   useEffect(() => {
     if (status === "finished") {
       setShowConfetti(true);
       setPenguinAnimKey((k) => k + 1);
-      
-      // Play cute completion sound
-      try {
-        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-        const now = audioContext.currentTime;
-        
-        // Create a cute "ding" sound
-        const osc = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-        
-        osc.connect(gain);
-        gain.connect(audioContext.destination);
-        
-        // Cute high-pitched ding
-        osc.frequency.setValueAtTime(800, now);
-        osc.frequency.exponentialRampToValueAtTime(600, now + 0.3);
-        
-        gain.gain.setValueAtTime(0.3, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
-        
-        osc.start(now);
-        osc.stop(now + 0.3);
-      } catch (e) {
-        // Fallback if audio context fails
-        console.log('Audio playback not available');
-      }
-      
       const t = setTimeout(() => setShowConfetti(false), 4000);
       return () => clearTimeout(t);
     }
@@ -166,10 +135,10 @@ export default function Home() {
           <p
             className="text-sm mt-1"
             style={{
-              color: '#6b7cff',
+              color: "oklch(0.65 0.06 240)",
               fontFamily: "'Nunito', sans-serif",
-              fontSize: '30px',
-              marginTop: '18px',
+              fontSize: '23px',
+              marginTop: '17px',
               width: '308px'
             }}
           >
@@ -179,82 +148,69 @@ export default function Home() {
 
 
 
-        {/* Timer card - ペンギンと一緒に */}
+        {/* Timer card - パステルカラー */}
         <div
-          className="relative flex items-center justify-center rounded-3xl p-8"
+          className="relative flex flex-col items-center justify-center rounded-3xl p-8"
           style={{
-            background: "#f5f5f5",
+            background: "oklch(0.88 0.02 120)",
             backdropFilter: "blur(20px)",
-            border: "8px solid #e8e8e8",
-            boxShadow: "0 8px 32px oklch(0 0 0 / 20%), inset 0 1px 0 oklch(1 0 0 / 30%)",
-            width: "420px",
-            height: "280px",
-            position: "relative",
+            border: "2px solid oklch(0.80 0.03 120)",
+            boxShadow: "0 4px 16px oklch(0 0 0 / 15%)",
+            width: "340px",
+            height: "343px",
           }}
         >
-          {/* Left penguin */}
-          <div
-            key={`left-${penguinAnimKey}`}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2"
-            style={{
-              animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
-              filter: "drop-shadow(0 4px 12px oklch(0 0 0 / 20%))",
-              marginLeft: "-60px",
-            }}
-          >
-            <img
-              src={PENGUIN_LEFT_ILLUSTRATION}
-              alt="penguin-left"
-              className="w-40 h-40 object-contain"
-            />
-          </div>
-
-          {/* Right penguin */}
-          <div
-            key={`right-${penguinAnimKey}`}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2"
-            style={{
-              animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
-              filter: "drop-shadow(0 4px 12px oklch(0 0 0 / 20%))",
-              marginRight: "-60px",
-            }}
-          >
-            <img
-              src={PENGUIN_RIGHT_ILLUSTRATION}
-              alt="penguin-right"
-              className="w-40 h-40 object-contain"
-            />
-          </div>
+          {/* SVG progress ring - どう森風カラー */}
+          <TimerRing progress={progress} mode={mode} size={320} strokeWidth={10} />
 
           {/* Inner content */}
           <div className="relative z-10 flex flex-col items-center gap-2">
-            {/* Time display - ゴールド */}
+            {/* Penguin image - パステルシャドウ */}
+            <div
+              key={penguinAnimKey}
+              className="w-28 h-28 rounded-full overflow-hidden border-2"
+              style={{
+                animation: status === "running" ? "breathe 4s ease-in-out infinite" : "float 3s ease-in-out infinite",
+                filter: "drop-shadow(0 2px 8px oklch(0 0 0 / 15%))",
+                borderColor: "oklch(0.80 0.03 120)",
+                boxShadow: "inset 0 1px 0 oklch(1 0 0 / 10%)",
+              }}
+            >
+              <img
+                src={penguinImg}
+                alt="penguin"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Time display - パステルテキスト */}
             <div
               className="text-5xl font-black tabular-nums leading-none"
               style={{
                 fontFamily: "'Nunito', sans-serif",
-                color: "#d4a574",
-                textShadow: "0 2px 4px oklch(0 0 0 / 10%)",
-                fontSize: '72px',
-                height: '80px',
+                color: "oklch(0.65 0.05 120)",
+                textShadow: "none",
+                fontSize: '61px',
+                height: '52px',
+                marginTop: '15px'
               }}
             >
               {formatTime(timeLeft)}
             </div>
 
-            {/* Message - グレー */}
+            {/* Message - パステルテキスト */}
             <p
               className="text-xs text-center"
               style={{
-                color: "#999999",
+                color: "oklch(0.70 0.04 120)",
                 fontFamily: "'DM Sans', sans-serif",
-                paddingTop: '4px',
+                paddingTop: '9px',
                 marginRight: '0px',
                 marginBottom: '0px',
-                width: '200px',
-                height: '40px',
-                fontSize: '18px',
-                marginTop: '0px',
+                width: '128px',
+                height: '39px',
+                fontSize: '21px',
+                marginTop: '4px'
               }}
             >
               {message}
@@ -378,7 +334,6 @@ export default function Home() {
             background: "oklch(0.14 0.05 260 / 60%)",
             border: "1px solid oklch(1 0 0 / 8%)",
             backdropFilter: "blur(10px)",
-            width: '162px'
           }}
         >
           <span style={{ color: "oklch(0.60 0.06 240)", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
