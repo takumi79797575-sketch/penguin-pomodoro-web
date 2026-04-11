@@ -71,11 +71,29 @@ export default function Home() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [penguinAnimKey, setPenguinAnimKey] = useState(0);
 
-  // Show confetti when finished
+  // Show confetti and play sound when finished
   useEffect(() => {
     if (status === "finished") {
       setShowConfetti(true);
       setPenguinAnimKey((k) => k + 1);
+      
+      // Play cute sound effect
+      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.3);
+      
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.3);
+      
       const t = setTimeout(() => setShowConfetti(false), 4000);
       return () => clearTimeout(t);
     }
@@ -320,9 +338,7 @@ export default function Home() {
             backdropFilter: "blur(10px)",
           }}
         >
-          <span style={{ color: "oklch(0.60 0.06 240)", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
-            完了
-          </span>
+
           <div className="flex gap-1 flex-wrap justify-center max-w-xs">
             {Array.from({ length: cycles }).map((_, i) => (
               <div
