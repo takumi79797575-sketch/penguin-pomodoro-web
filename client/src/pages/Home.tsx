@@ -209,7 +209,7 @@ export default function Home() {
                 paddingTop: '44px',
                 marginRight: '0px',
                 marginBottom: '0px',
-                width: '173px',
+                width: '221px',
                 height: '39px',
                 fontSize: '24px',
                 marginTop: '4px'
